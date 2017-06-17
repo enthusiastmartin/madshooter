@@ -1,16 +1,14 @@
 import pygame
 
+from application.constants import WIDTH, HEIGHT, BLACK, APPLICATION_TITLE
 
 pygame.init()
 
-from application.constants import WIDTH, HEIGHT, BLACK
-
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-from application.core.player import Player
-from application.core.enemy import Enemy
+from application.core.entities import *
 
-pygame.display.set_caption("Mad Shooter")
+pygame.display.set_caption(APPLICATION_TITLE)
 
 all_sprites = pygame.sprite.Group()
 player = Player()
