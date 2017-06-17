@@ -10,6 +10,8 @@ from application.core.entities import *
 
 pygame.display.set_caption(APPLICATION_TITLE)
 
+clock = pygame.time.Clock()
+
 all_sprites = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
@@ -21,6 +23,9 @@ all_sprites.add(enemy)
 running = True
 
 while running:
+
+    clock.tick(60)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
