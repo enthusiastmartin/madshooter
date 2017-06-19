@@ -6,7 +6,7 @@ pygame.init()
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-from application.core.entities import Player, Enemy
+from application.core.entities import Player
 
 pygame.display.set_caption(APPLICATION_TITLE)
 
@@ -16,9 +16,12 @@ all_sprites = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
 
-enemy = Enemy()
+# Load first Level
+from application.core.levels.level01 import Level01
+level = Level01()
+level.setup()
 
-all_sprites.add(enemy)
+all_sprites.add(level.entities)
 
 running = True
 
