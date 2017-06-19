@@ -3,16 +3,16 @@ import pygame
 from application.constants import WIDTH, HEIGHT, BLACK, APPLICATION_TITLE
 
 pygame.init()
-
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-
-from application.core.entities import Player
-
 pygame.display.set_caption(APPLICATION_TITLE)
-
 clock = pygame.time.Clock()
 
+# Groups
+bullets_group = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
+
+# Player
+from application.core.entities import Player
 player = Player()
 all_sprites.add(player)
 
@@ -23,6 +23,7 @@ level.setup()
 
 all_sprites.add(level.entities)
 
+# Main
 running = True
 
 while running:
@@ -44,4 +45,5 @@ while running:
     all_sprites.draw(screen)
 
     pygame.display.flip()
+
 pygame.quit()

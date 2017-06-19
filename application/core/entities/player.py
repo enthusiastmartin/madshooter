@@ -2,6 +2,9 @@ import pygame
 
 from application.constants import WIDTH, HEIGHT
 from application.core.assets import player_img
+from application.core.entities.bullet import Bullet
+
+from application.core.collider import add_bullet
 
 
 class Player(pygame.sprite.Sprite):
@@ -16,6 +19,10 @@ class Player(pygame.sprite.Sprite):
         self.rect.bottom = HEIGHT - 10
 
         self.speedx = 0
+
+        now = pygame.time.get_ticks()
+        self.last_shot = now
+        self.shot_delay= 250
 
     def update(self):
         keystate = pygame.key.get_pressed()
@@ -32,3 +39,15 @@ class Player(pygame.sprite.Sprite):
             self.rect.left = 0
 
         self.rect.x += self.speedx
+
+        if keystate[pygame.K_SPACE]:
+            self.shoot()
+
+    def shoot(self):
+        now = pygame.time.get_ticks()
+        if now - self.last_shot > self.shot_delay:
+            self.last_shot = now
+
+            bullet = Bullet(self.rect.centerx, self.rect.top)
+
+            add_bullet(bullet)
