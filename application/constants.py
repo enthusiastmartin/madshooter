@@ -1,4 +1,4 @@
 APPLICATION_TITLE = "Mad Shooter"
-WIDTH = 480
+WIDTH = 800
 HEIGHT = 600
 BLACK = (0, 0, 0)

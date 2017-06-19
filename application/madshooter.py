@@ -6,7 +6,7 @@ pygame.init()
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-from application.core.entities import *
+from application.core.entities import Player, Enemy
 
 pygame.display.set_caption(APPLICATION_TITLE)
 
