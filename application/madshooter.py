@@ -7,8 +7,11 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption(APPLICATION_TITLE)
 clock = pygame.time.Clock()
 
+from application.core.collider import collide_and_kill
+
 # Groups
 bullets_group = pygame.sprite.Group()
+enemy_group = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 
 # Player
@@ -22,6 +25,8 @@ level = Level01()
 level.setup()
 
 all_sprites.add(level.entities)
+
+enemy_group.add(level.entities)
 
 # Main
 running = True
@@ -37,6 +42,8 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 running = False
+
+    collide_and_kill(bullets_group, enemy_group)
 
     screen.fill(BLACK)
 

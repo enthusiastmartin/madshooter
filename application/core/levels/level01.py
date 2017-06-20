@@ -6,14 +6,15 @@ from application.core.entities import Enemy
 
 class Level01(object):
     def __init__(self):
-        self._entities = []
+
+        self._enemies = []
 
     def setup(self):
         max = (WIDTH - 100) // 50
 
         for idx in range(0,max):
-            self._entities.append(Enemy(x=50+idx*50))
+            self._enemies.append(Enemy(x=50+idx*50))
 
     @property
     def entities(self):
-        return self._entities
+        return self._enemies
