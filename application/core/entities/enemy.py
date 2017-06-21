@@ -14,5 +14,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.centerx = x
         self.rect.bottom = y
 
+        self.attack_speed = 1
+
     def update(self):
-        pass
+        self.rect.bottom += self.attack_speed

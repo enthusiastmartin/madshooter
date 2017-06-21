@@ -10,9 +10,7 @@ clock = pygame.time.Clock()
 from application.core.collider import collide_and_kill
 
 # Groups
-bullets_group = pygame.sprite.Group()
-enemy_group = pygame.sprite.Group()
-all_sprites = pygame.sprite.Group()
+from application.groups import bullets_group, enemy_group, all_sprites
 
 # Player
 from application.core.entities import Player
