@@ -1,3 +1,5 @@
+import random
+
 import pygame
 
 from application.constants import WIDTH, HEIGHT, BLACK, APPLICATION_TITLE
@@ -11,6 +13,8 @@ from application.core.collider import collide_and_kill
 
 # Groups
 from application.groups import bullets_group, enemy_group, all_sprites
+
+from application.core.entities.explosion import Explosion
 
 # Player
 from application.core.entities import Player
@@ -41,7 +45,11 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
 
-    collide_and_kill(bullets_group, enemy_group)
+    hits = collide_and_kill(bullets_group, enemy_group)
+
+    for hit in hits:
+        expl = Explosion(hit.rect.center, 'lg')
+        all_sprites.add(expl)
 
     screen.fill(BLACK)
 
