@@ -41,11 +41,7 @@ class Game(object):
                     if event.key == pygame.K_ESCAPE:
                         running = False
 
-            hits = collide_and_kill(bullets_group, enemy_group)
-
-            for hit in hits:
-                expl = Explosion(hit.rect.center, 'sm')
-                all_sprites.add(expl)
+            self.handle_bullets()
 
             self.screen.fill(BLACK)
 
@@ -54,3 +50,11 @@ class Game(object):
             all_sprites.draw(self.screen)
 
             pygame.display.flip()
+
+    @staticmethod
+    def handle_bullets():
+        hits = collide_and_kill(bullets_group, enemy_group)
+        for hit in hits:
+            expl = Explosion(hit.rect.center, 'sm')
+            all_sprites.add(expl)
+
