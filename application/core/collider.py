@@ -1,6 +1,6 @@
 import pygame
 
-from application.groups import all_sprites, bullets_group
+from application.groups import all_sprites, bullets_group, enemy_bullet_group
 
 
 def add_bullet(bullet):
@@ -8,5 +8,10 @@ def add_bullet(bullet):
     bullets_group.add(bullet)
 
 
-def collide_and_kill( group1, group2 ):
+def add_enemy_bullet(bullet):
+    all_sprites.add(bullet)
+    enemy_bullet_group.add(bullet)
+
+
+def collide_and_kill(group1, group2):
     return pygame.sprite.groupcollide(group1, group2, True, True)

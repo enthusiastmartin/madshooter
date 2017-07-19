@@ -1,7 +1,11 @@
+from random import randint, seed
+
 import pygame
 
 from application.constants import WIDTH, HEIGHT
 from application.core.assets import enemy_img
+from application.core.collider import add_bullet, add_enemy_bullet
+from application.core.entities.bullet import Bullet
 
 
 class Enemy(pygame.sprite.Sprite):
@@ -16,5 +20,25 @@ class Enemy(pygame.sprite.Sprite):
 
         self.attack_speed = 1
 
+        self.update_tick = pygame.time.get_ticks()
+        self.last_shot = self.update_tick
+        self.shot_delay= 1250
+
     def update(self):
+        self.update_tick = pygame.time.get_ticks()
         self.rect.bottom += self.attack_speed
+
+        # NOTE: this random shoot only until there is time to implement something better
+        seed(self.rect.centerx)
+
+        if randint(0,9) == 5:
+            self.shoot()
+
+    def shoot(self):
+        #now = pygame.time.get_ticks()
+        if self.update_tick - self.last_shot > self.shot_delay:
+            self.last_shot = self.update_tick
+
+            bullet = Bullet(self.rect.centerx, self.rect.bottom, 10)
+
+            add_enemy_bullet(bullet)
