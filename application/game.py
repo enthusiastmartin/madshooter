@@ -1,11 +1,11 @@
 import pygame
 
 from application.constants import BLACK
-from application.core.collider import collide_and_kill
+from application.core.collider import collide_and_kill, player_collide
 from application.core.entities import Player
 from application.core.entities.explosion import Explosion
 from application.core.levels.level01 import Level01
-from application.groups import all_sprites, enemy_group, bullets_group
+from application.groups import all_sprites, enemy_group, bullets_group, enemy_bullet_group
 
 
 class Game(object):
@@ -17,6 +17,10 @@ class Game(object):
 
         self.clock = clock
         self.screen = screen
+
+        self.player_group = pygame.sprite.Group()
+
+        self.player_group.add(self.player)
 
     def setupLevel(self):
         self.current_level = Level01()
@@ -43,6 +47,8 @@ class Game(object):
 
             self.handle_bullets()
 
+            self.handle_enemy_bulltets()
+
             self.screen.fill(BLACK)
 
             all_sprites.update()
@@ -57,4 +63,12 @@ class Game(object):
         for hit in hits:
             expl = Explosion(hit.rect.center, 'sm')
             all_sprites.add(expl)
+
+    def handle_enemy_bulltets(self):
+        hits = player_collide(self.player, enemy_bullet_group)
+        for bullet in hits:
+            expl = Explosion(bullet.rect.center, 'lg')
+            self.player.player_hit(bullet)
+            all_sprites.add(expl)
+
 

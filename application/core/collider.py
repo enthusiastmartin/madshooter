@@ -15,3 +15,7 @@ def add_enemy_bullet(bullet):
 
 def collide_and_kill(group1, group2):
     return pygame.sprite.groupcollide(group1, group2, True, True)
+
+
+def player_collide(player, group):
+    return pygame.sprite.spritecollide(player, group, True)

@@ -18,6 +18,8 @@ class Bullet(pygame.sprite.Sprite):
 
         self.speedy = speedy
 
+        self._damage = 10
+
     def update(self):
         self.rect.y += self.speedy
 
@@ -25,3 +27,6 @@ class Bullet(pygame.sprite.Sprite):
             self.kill()
         elif self.rect.bottom >= HEIGHT:
             self.kill()
+
+    def get_damage(self):
+        return self._damage

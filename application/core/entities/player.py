@@ -24,6 +24,8 @@ class Player(pygame.sprite.Sprite):
         self.last_shot = self.update_tick
         self.shot_delay= 250
 
+        self.hit = False
+
     def update(self):
         self.update_tick = pygame.time.get_ticks()
 
@@ -53,3 +55,7 @@ class Player(pygame.sprite.Sprite):
             bullet = Bullet(self.rect.centerx, self.rect.top)
 
             add_bullet(bullet)
+
+    def player_hit(self, bullet):
+        self.hit = True
+        print(bullet.get_damage())
