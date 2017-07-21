@@ -30,7 +30,6 @@ class Game(object):
         enemy_group.add(self.current_level.entities)
 
     def run(self):
-        pass
         running = True
 
         while running:
@@ -56,6 +55,8 @@ class Game(object):
             all_sprites.draw(self.screen)
 
             pygame.display.flip()
+
+            running = self.player.is_alive()
 
     @staticmethod
     def handle_bullets():

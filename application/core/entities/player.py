@@ -5,6 +5,8 @@ from application.core.assets import player_img
 from application.core.entities.bullet import Bullet
 
 from application.core.collider import add_bullet
+from application.core.entities.explosion import Explosion
+from application.groups import all_sprites
 
 
 class Player(pygame.sprite.Sprite):
@@ -22,11 +24,21 @@ class Player(pygame.sprite.Sprite):
 
         self.update_tick = pygame.time.get_ticks()
         self.last_shot = self.update_tick
-        self.shot_delay= 250
+        self.shot_delay = 250
 
-        self.hit = False
+        self.hp = 20
+        self._alive = True
+
+    def is_alive(self):
+        return self._alive
 
     def update(self):
+
+        if self.hp <= 0:
+            expl = Explosion(self.rect.center, 'lg')
+            all_sprites.add(expl)
+            self._alive = False
+
         self.update_tick = pygame.time.get_ticks()
 
         keystate = pygame.key.get_pressed()
@@ -57,5 +69,4 @@ class Player(pygame.sprite.Sprite):
             add_bullet(bullet)
 
     def player_hit(self, bullet):
-        self.hit = True
-        print(bullet.get_damage())
+        self.hp -= bullet.get_damage()
