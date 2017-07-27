@@ -39,16 +39,18 @@ class Game(object):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
+                    break
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         running = False
+                        break
+
+            self.current_level.update(screen = self.screen)
 
             self.handle_bullets()
 
             self.handle_enemy_bulltets()
-
-            self.screen.fill(BLACK)
 
             all_sprites.update()
 
@@ -56,7 +58,8 @@ class Game(object):
 
             pygame.display.flip()
 
-            running = self.player.is_alive()
+            if running:
+                running = self.player.is_alive()
 
     @staticmethod
     def handle_bullets():
