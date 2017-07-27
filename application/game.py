@@ -5,6 +5,7 @@ from application.core.collider import collide_and_kill, player_collide
 from application.core.entities import Player
 from application.core.entities.explosion import Explosion
 from application.core.levels.level01 import Level01
+from application.core.levels.level02 import Level02
 from application.groups import all_sprites, enemy_group, bullets_group, enemy_bullet_group
 
 
@@ -23,7 +24,7 @@ class Game(object):
         self.player_group.add(self.player)
 
     def setupLevel(self):
-        self.current_level = Level01()
+        self.current_level = Level02()
         self.current_level.setup()
 
         all_sprites.add(self.current_level.entities)
@@ -46,7 +47,7 @@ class Game(object):
                         running = False
                         break
 
-            self.current_level.update(screen = self.screen)
+            self.current_level.update(screen=self.screen)
 
             self.handle_bullets()
 
@@ -74,5 +75,3 @@ class Game(object):
             expl = Explosion(bullet.rect.center, 'lg')
             self.player.player_hit(bullet)
             all_sprites.add(expl)
-
-

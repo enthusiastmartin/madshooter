@@ -4,3 +4,7 @@ class BaseLevel(object):
 
     def update(self, screen=None):
         pass
+
+    @property
+    def entities(self):
+        return []
