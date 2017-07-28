@@ -6,34 +6,48 @@ from application.core.entities import Player
 from application.core.entities.explosion import Explosion
 from application.core.levels.level01 import Level01
 from application.core.levels.level02 import Level02
-from application.groups import all_sprites, enemy_group, bullets_group, enemy_bullet_group
+from application.core.menu import display_main_menu
+from application.groups import all_sprites, enemy_group, bullets_group, enemy_bullet_group, reset_groups
 
 
 class Game(object):
     def __init__(self, screen, clock):
-        self.player = Player()
-        all_sprites.add(self.player)
 
         self.current_level = None
 
         self.clock = clock
         self.screen = screen
 
-        self.player_group = pygame.sprite.Group()
 
-        self.player_group.add(self.player)
+
+        self._display_menu = True
 
     def setupLevel(self):
-        self.current_level = Level02()
+        self.current_level = Level01()
         self.current_level.setup()
 
         all_sprites.add(self.current_level.entities)
         enemy_group.add(self.current_level.entities)
 
+    def _reset(self):
+        self.player = Player()
+
+        reset_groups()
+        all_sprites.add(self.player)
+
+        self.player_group = pygame.sprite.Group()
+        self.player_group.add(self.player)
+
     def run(self):
+
         running = True
 
         while running:
+            if self._display_menu:
+                display_main_menu(self.screen)
+                self._reset()
+                self.setupLevel()
+                self._display_menu = False
 
             self.clock.tick(60)
 
@@ -59,8 +73,7 @@ class Game(object):
 
             pygame.display.flip()
 
-            if running:
-                running = self.player.is_alive()
+            self._display_menu = not self.player.is_alive()
 
     @staticmethod
     def handle_bullets():

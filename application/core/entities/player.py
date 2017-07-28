@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite):
         self.last_shot = self.update_tick
         self.shot_delay = 250
 
-        self.hp = 50
+        self.hp = 20
         self._alive = True
 
     def is_alive(self):

@@ -11,7 +11,6 @@ clock = pygame.time.Clock()
 from application.game import Game
 
 game = Game(screen, clock)
-game.setupLevel()
 
 game.run()
 
