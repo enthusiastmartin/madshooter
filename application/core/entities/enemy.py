@@ -24,14 +24,15 @@ class Enemy(pygame.sprite.Sprite):
         self.last_shot = self.update_tick
         self.shot_delay= 1250
 
+        seed(self.rect.centerx)
+
     def update(self):
         self.update_tick = pygame.time.get_ticks()
         self.rect.bottom += self.attack_speed
 
         # NOTE: this random shoot only until there is time to implement something better
-        seed(self.rect.centerx)
 
-        if randint(0,9) == 5:
+        if randint(0,50) == 6:
             self.shoot()
 
     def shoot(self):
