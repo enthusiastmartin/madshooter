@@ -24,9 +24,9 @@ class Level02(BaseLevel):
 
     def setup(self):
         self._enemies = []
-        self._enemies.append({'time': 5000, 'enemy': Enemy(x=150)})
-        self._enemies.append({'time': 6500, 'enemy': Enemy(x=450)})
-        self._enemies.append({'time': 8500, 'enemy': Enemy(x=250)})
+        self._enemies.append({'time': 5000, 'enemy': Enemy(x=150, y=0)})
+        self._enemies.append({'time': 6500, 'enemy': Enemy(x=450, y=0)})
+        self._enemies.append({'time': 8500, 'enemy': Enemy(x=250, y=0)})
 
     def update(self, screen=None):
 
