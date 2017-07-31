@@ -6,6 +6,11 @@ enemy_group = pygame.sprite.Group()
 all_sprites = pygame.sprite.Group()
 
 
+def add_enemy(enemy):
+    all_sprites.add(enemy)
+    enemy_group.add(enemy)
+
+
 def reset_groups():
     for b in bullets_group:
         b.kill()

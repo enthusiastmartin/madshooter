@@ -18,12 +18,10 @@ class Game(object):
         self.clock = clock
         self.screen = screen
 
-
-
         self._display_menu = True
 
     def setupLevel(self):
-        self.current_level = Level01()
+        self.current_level = Level02()
         self.current_level.setup()
 
         all_sprites.add(self.current_level.entities)
