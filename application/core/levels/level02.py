@@ -20,13 +20,16 @@ class Level02(BaseLevel):
         self._x1 = 0
         self._y1 = -self._h
 
-        self._level_time = 20 * 1000 # milliseconds
+        self._level_time = 20 * 1000  # milliseconds
 
     def setup(self):
         self._enemies = []
         self._enemies.append({'time': 5000, 'enemy': Enemy(x=150, y=0)})
         self._enemies.append({'time': 6500, 'enemy': Enemy(x=450, y=0)})
         self._enemies.append({'time': 8500, 'enemy': Enemy(x=250, y=0)})
+        self._enemies.append({'time': 8500, 'enemy': Enemy(x=550, y=0)})
+        self._enemies.append({'time': 11500, 'enemy': Enemy(x=150, y=0)})
+        self._enemies.append({'time': 12500, 'enemy': Enemy(x=350, y=0)})
 
     def update(self, screen=None):
 
@@ -44,7 +47,6 @@ class Level02(BaseLevel):
                 add_enemy(self._enemies[0]['enemy'])
                 del self._enemies[0]
 
-
     def _update_background(self, screen):
         screen.blit(self._background, self._background.get_rect())
         self._y1 += 1
@@ -55,4 +57,3 @@ class Level02(BaseLevel):
             self._y = -self._h
         if self._y1 > self._h:
             self._y1 = -self._h
-
