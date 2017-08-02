@@ -1,4 +1,5 @@
 .idea/
+*.zip
 env
 *.py[cod]
 application/assets/spaceArt.zip

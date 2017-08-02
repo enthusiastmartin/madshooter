@@ -1,5 +1,7 @@
 import pygame
+
 from os import path
+import time
 
 from application.config import img_dir
 from application.constants import WIDTH, HEIGHT
@@ -11,8 +13,8 @@ from application.groups import add_enemy
 class Level02(BaseLevel):
     def __init__(self):
         self._background_img = pygame.image.load(path.join(img_dir, 'starfield.png')).convert()
-
-        self._background = pygame.transform.scale(self._background_img, (WIDTH, HEIGHT))
+        self._background = pygame.transform.rotate(self._background_img, 90)
+        self._background = pygame.transform.scale(self._background, (WIDTH, HEIGHT))
 
         self._w, self._h = self._background.get_size()
 
@@ -31,13 +33,19 @@ class Level02(BaseLevel):
         self._enemies.append({'time': 11500, 'enemy': Enemy(x=150, y=0)})
         self._enemies.append({'time': 12500, 'enemy': Enemy(x=350, y=0)})
 
+        self._start_time = time.time() * 1000.0
+
     def update(self, screen=None):
 
         # Update background
         if screen:
             self._update_background(screen)
 
-        now = pygame.time.get_ticks()
+        # now = pygame.time.get_ticks()
+        now = time.time() * 1000.0
+        diff = now - self._start_time
+
+        now = diff
 
         if now > self._level_time:
             pass
