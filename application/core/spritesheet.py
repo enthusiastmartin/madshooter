@@ -7,8 +7,10 @@ class SpriteSheet(object):
     def __init__(self, filename):
         try:
             self.sheet = pygame.image.load(filename).convert()
-        except:
-            pass
+        except Exception as e:
+            print(str(e))
+            raise
+
         """
         except pygame.error, message:
             print('Unable to load spritesheet image: '+filename)

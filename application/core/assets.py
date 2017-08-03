@@ -4,6 +4,10 @@ import pygame
 
 from application.config import img_dir
 from application.constants import BLACK
+from application.core.spritesheet import SpriteSheet
+
+ship_sheet_img = path.join(img_dir+"/ships", 'ships_saucer.png')
+ship_sheet = SpriteSheet(ship_sheet_img)
 
 player_img = pygame.image.load(path.join(img_dir, 'player.png')).convert()
 enemy_img = pygame.image.load(path.join(img_dir, 'enemy.png')).convert()

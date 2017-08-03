@@ -3,7 +3,7 @@ from random import randint, seed
 import pygame
 
 from application.constants import WIDTH, HEIGHT
-from application.core.assets import enemy_img
+from application.core.assets import enemy_img, ship_sheet
 from application.core.collider import add_bullet, add_enemy_bullet
 from application.core.entities.bullet import Bullet
 
@@ -12,7 +12,11 @@ class Enemy(pygame.sprite.Sprite):
 
     def __init__(self, x=WIDTH/2, y = 50):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.transform.scale(enemy_img, (50, 38))
+
+        self.image = ship_sheet.image_at((0,0,16,40))
+        self.image = pygame.transform.scale(self.image, (38,50))
+
+        #self.image = pygame.transform.scale(enemy_img, (50, 38))
         self.rect = self.image.get_rect()
         self.radius = 20
         self.rect.centerx = x
