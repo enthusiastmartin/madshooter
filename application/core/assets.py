@@ -9,10 +9,10 @@ from application.core.spritesheet import SpriteSheet
 ship_sheet_img = path.join(img_dir+"/ships", 'ships_saucer.png')
 ship_sheet = SpriteSheet(ship_sheet_img)
 
-player_img = pygame.image.load(path.join(img_dir, 'player.png')).convert()
-enemy_img = pygame.image.load(path.join(img_dir, 'enemy.png')).convert()
+player_img = pygame.image.load(path.join(img_dir, 'player.png')).convert_alpha()
+enemy_img = pygame.image.load(path.join(img_dir, 'enemy.png')).convert_alpha()
 
-laser_green_img = pygame.image.load(path.join(img_dir,'laserGreen.png')).convert()
+laser_green_img = pygame.image.load(path.join(img_dir,'laserGreen.png')).convert_alpha()
 
 explosion_anim = {}
 explosion_anim['lg'] = []

@@ -6,7 +6,7 @@ Inspired by https://pygame.org/wiki/Spritesheet
 class SpriteSheet(object):
     def __init__(self, filename):
         try:
-            self.sheet = pygame.image.load(filename).convert()
+            self.sheet = pygame.image.load(filename).convert_alpha()
         except Exception as e:
             print(str(e))
             raise
@@ -21,7 +21,7 @@ class SpriteSheet(object):
     def image_at(self, rectangle, colorkey=None):
         "Loads image from x,y,x+offset,y+offset"
         rect = pygame.Rect(rectangle)
-        image = pygame.Surface(rect.size).convert()
+        image = pygame.Surface(rect.size).convert_alpha()
         image.blit(self.sheet, (0, 0), rect)
         if colorkey is not None:
             if colorkey is -1:
